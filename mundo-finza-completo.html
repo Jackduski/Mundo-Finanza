@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mundo Finza: bolsas, divisas y riesgos de invertir</title><meta name="description" content="Guía en español sobre bolsas, divisas, bancos centrales y riesgos de invertir. Contenido educativo, sin asesoría financiera.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500&family=Sora:wght@600;700&display=swap">
+<style>:root{--bg:#F3F6FA;--surface:#fff;--ink:#0B1B33;--muted:#4A5B74;--line:#D3DBE7;--gold:#8F6200;--up:#0E7A52;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0A1424;--surface:#11223A;--ink:#E6EEF8;--muted:#9DB0C7;--line:#223652;--gold:#E6B450;--up:#2EE59D;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0A1424;--surface:#11223A;--ink:#E6EEF8;--muted:#9DB0C7;--line:#223652;--gold:#E6B450;--up:#2EE59D;color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px);scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.6 Manrope,system-ui,"Noto Sans",sans-serif}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:20;background:var(--bg)}
+h1,h2,h3{font-family:Sora,system-ui,sans-serif;line-height:1.2;margin:0}
+a{color:var(--gold)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:21;background:var(--bg);border-bottom:1px solid var(--line)}
+.bar{max-width:72rem;margin:auto;padding:.65rem 1.25rem;display:flex;gap:1.1rem;align-items:center}
+.bar strong{font:700 1.15rem Sora,sans-serif;margin-inline-end:auto;white-space:nowrap}
+.bar nav{display:flex;gap:1.1rem;overflow-x:auto;white-space:nowrap}
+.bar nav a{text-decoration:none;color:var(--muted);font-size:.9rem}
+.bar nav a:hover{color:var(--ink)}
+select{font:inherit;font-size:.9rem;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:.4rem .6rem}
+.hero{background:radial-gradient(120% 90% at 75% 15%,#183a6b 0%,#0a1a33 55%,#060f1e 100%);color:#E8F0F8}
+.hi{max-width:72rem;margin:auto;padding:3rem 1.25rem 2rem;display:grid;grid-template-columns:1.05fr 1fr;gap:2rem;align-items:center}
+.hero h1{font-size:clamp(2rem,5vw,3.4rem)}
+.hero p{color:#B8C8DC;max-width:34rem}
+.hero .note{font-size:.85rem;color:#E6B450}
+#stage{aspect-ratio:1;max-height:33rem;width:100%;touch-action:pan-y;cursor:grab}
+#stage canvas{display:block;width:100%;height:100%}
+#clock{grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fill,minmax(10.5rem,1fr));gap:.75rem;margin:0;padding:0;list-style:none}
+#clock li{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:.8rem .9rem;backdrop-filter:blur(6px)}
+#clock b{display:block;font-weight:500}
+#clock time{font-size:.82rem;color:#9DB0C7}
+.pill{display:flex;gap:.4rem;align-items:center;font-size:.8rem;margin-top:.3rem}
+.pill i{width:.6rem;height:.6rem;border-radius:50%;background:#7f93ab}
+#clock .open{border-inline-start:4px solid #2EE59D}
+#clock .open .pill{color:#2EE59D}#clock .open .pill i{background:#2EE59D}
+.tilt{transition:transform .15s ease-out;will-change:transform}
+main{max-width:72rem;margin:auto;padding:0 1.25rem}
+section{padding:3.5rem 0 .5rem}
+h2{font-size:clamp(1.5rem,3.5vw,2.1rem);padding-inline-start:.9rem;border-inline-start:5px solid var(--gold);margin-bottom:1.5rem}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1rem}
+.card{background:var(--surface);border:1px solid var(--line);border-top:3px solid var(--gold);border-radius:10px;padding:1.1rem 1.2rem;box-shadow:0 10px 24px -14px rgba(5,15,35,.45)}
+.card h3{font-size:1.05rem;margin-bottom:.3rem}.card p{margin:0;color:var(--muted);font-size:.95rem}
+.wrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:32rem}
+th,td{text-align:start;padding:.65rem .9rem;border-bottom:1px solid var(--line);font-size:.95rem}
+th{color:var(--muted);font-weight:500;font-size:.85rem}tr:last-child td{border:0}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;padding:0;margin:0 0 .6rem;list-style:none}
+.chips li{border:1px solid var(--gold);border-radius:99px;padding:.3rem .9rem;font-size:.92rem;background:var(--surface)}
+.note2{font-size:.82rem;color:var(--muted)}
+#q{width:100%;max-width:26rem;padding:.65rem .85rem;font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px}
+#gl{margin:1rem 0 0;padding:0;list-style:none;border-top:1px solid var(--line)}
+#gl li{padding:.7rem 0;border-bottom:1px solid var(--line)}#gl span{color:var(--muted)}
+#none{display:none;color:var(--muted)}
+footer{max-width:72rem;margin:3rem auto 2rem;padding:1.25rem;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem}
+@media (max-width:820px){.hi{grid-template-columns:1fr}#stage{max-height:21rem;order:-1}.bar nav{display:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.tilt{transition:none}}
+.bar strong a{color:inherit;text-decoration:none}
+a.card{color:inherit;text-decoration:none;display:block}
+.fl{max-width:72rem;margin:2.5rem auto 0;padding:0 1.25rem;display:flex;flex-wrap:wrap;gap:.6rem 1.25rem;font-size:.9rem}
+.doc{max-width:48rem;margin:auto;padding:2.5rem 1.25rem}
+.doc h1{font-size:clamp(1.8rem,5vw,2.6rem);margin-bottom:1rem}
+.doc h2{margin-top:2.5rem}
+.doc h3{font-size:1.1rem;margin:1.6rem 0 .3rem}
+.doc p,.doc li{max-width:68ch}
+.doc .aviso{border:1px solid var(--gold);border-radius:10px;padding:1rem 1.1rem;background:var(--surface)}
+@media (max-width:820px){.dp .bar nav{display:flex}}
+
+</style>
+</head>
+<body>
+<header><div class="bar">
+<strong>Mundo Finza</strong>
+<nav aria-label="Menu"><a href="#inicio" data-i="n1"></a><a href="#activos" data-i="n2"></a><a href="#bolsas" data-i="n3"></a><a href="#bancos" data-i="n4"></a><a href="#conceptos" data-i="n5"></a><a href="#busquedas" data-i="n6"></a><a href="#glosario" data-i="n7"></a></nav>
+<select id="lang" aria-label="Language"><option value="es">Español</option><option value="en">English</option><option value="pt">Português</option><option value="fr">Français</option><option value="de">Deutsch</option><option value="zh">中文</option><option value="ja">日本語</option><option value="ar">العربية</option></select>
+</div></header>
+
+<div id="home"><div class="hero" id="inicio"><div class="hi">
+<div><h1 id="h1"></h1><p data-i="lead"></p><p class="note" id="nt" data-i="nt" hidden></p></div>
+<div id="stage" aria-hidden="true"></div>
+<ul id="clock" aria-live="polite"></ul>
+</div></div>
+
+<main>
+<section id="activos"><h2 data-i="t2"></h2>
+<div class="cards" lang="es">
+<div class="card tilt"><h3>Acciones</h3><p>Partes de una empresa. Pueden dar ganancias por subida de precio y por dividendos.</p></div>
+<div class="card tilt"><h3>Bonos y deuda</h3><p>Préstamos a gobiernos o empresas que pagan intereses. Los bonos del Tesoro de EE. UU. son la referencia mundial.</p></div>
+<div class="card tilt"><h3>Divisas</h3><p>Cambio entre monedas como dólar, euro o yen. Opera casi las 24 horas, de lunes a viernes.</p></div>
+<div class="card tilt"><h3>Materias primas</h3><p>Petróleo, gas, oro, cobre, trigo y café. Reflejan oferta, demanda y tensiones geopolíticas.</p></div>
+<div class="card tilt"><h3>Criptoactivos</h3><p>Activos digitales como bitcoin y ether. Operan todos los días y son muy volátiles.</p></div>
+<div class="card tilt"><h3>Derivados</h3><p>Opciones y futuros cuyo valor depende de otro activo. Sirven para cubrir riesgos o especular.</p></div>
+</div></section>
+
+<section id="bolsas"><h2 data-i="t3"></h2>
+<div class="wrap" lang="es"><table>
+<thead><tr><th>Región</th><th>Bolsa</th><th>Índices de referencia</th></tr></thead><tbody>
+<tr><td>Estados Unidos</td><td>NYSE y Nasdaq</td><td>S&amp;P 500, Dow Jones, Nasdaq Composite</td></tr>
+<tr><td>México</td><td>Bolsa Mexicana de Valores</td><td>S&amp;P/BMV IPC</td></tr>
+<tr><td>Brasil</td><td>B3, São Paulo</td><td>Ibovespa</td></tr>
+<tr><td>Reino Unido</td><td>Bolsa de Londres</td><td>FTSE 100</td></tr>
+<tr><td>Alemania</td><td>Bolsa de Fráncfort</td><td>DAX</td></tr>
+<tr><td>Francia</td><td>Euronext París</td><td>CAC 40</td></tr>
+<tr><td>España</td><td>Bolsa de Madrid</td><td>IBEX 35</td></tr>
+<tr><td>Japón</td><td>Bolsa de Tokio</td><td>Nikkei 225, TOPIX</td></tr>
+<tr><td>China</td><td>Shanghái y Shenzhen</td><td>SSE Composite, CSI 300</td></tr>
+<tr><td>Hong Kong</td><td>HKEX</td><td>Hang Seng</td></tr>
+<tr><td>India</td><td>NSE y BSE</td><td>Nifty 50, Sensex</td></tr>
+<tr><td>Australia</td><td>ASX, Sídney</td><td>S&amp;P/ASX 200</td></tr>
+</tbody></table></div></section>
+
+<section id="bancos"><h2 data-i="t4"></h2>
+<div class="cards" lang="es">
+<div class="card tilt"><h3>Reserva Federal (Fed)</h3><p>EE. UU. Busca empleo máximo y precios estables. El dólar es la moneda de reserva mundial.</p></div>
+<div class="card tilt"><h3>Banco Central Europeo</h3><p>Zona euro. Su objetivo principal es la estabilidad de precios.</p></div>
+<div class="card tilt"><h3>Banco de Japón</h3><p>Mantuvo tasas muy bajas por años. Sus giros afectan al yen y a los mercados globales.</p></div>
+<div class="card tilt"><h3>Banco de Inglaterra</h3><p>Fija la tasa que influye en la libra y en las hipotecas británicas.</p></div>
+<div class="card tilt"><h3>Banco Popular de China</h3><p>Dirige la política monetaria de la segunda economía del mundo y controla el yuan.</p></div>
+<div class="card tilt"><h3>Banxico y Banco Central do Brasil</h3><p>Referentes de América Latina en inflación y tipo de cambio. En países dolarizados, como El Salvador, pesa la Fed.</p></div>
+</div></section>
+
+<section id="conceptos"><h2 data-i="t5"></h2>
+<div class="cards" lang="es">
+<div class="card tilt"><h3>Inflación</h3><p>Aumento general de precios. Si sube demasiado, los bancos centrales suben las tasas.</p></div>
+<div class="card tilt"><h3>Tasas de interés</h3><p>El precio del dinero. Tasas altas encarecen los créditos y suelen presionar a las acciones.</p></div>
+<div class="card tilt"><h3>Curva de rendimientos</h3><p>Compara bonos de corto y largo plazo. Si se invierte, muchos la leen como señal de posible recesión.</p></div>
+<div class="card tilt"><h3>PIB</h3><p>Valor de lo que produce un país en un periodo. Muestra si la economía crece o se contrae.</p></div>
+<div class="card tilt"><h3>Tipo de cambio</h3><p>Cuántas unidades de una moneda valen en otra. Afecta importaciones, exportaciones y deudas en dólares.</p></div>
+<div class="card tilt"><h3>Diversificación</h3><p>Repartir el dinero entre activos y países para que una sola caída no lo pierda todo.</p></div>
+</div></section>
+
+<section><h2 lang="es">Guías completas</h2><div class="cards" lang="es"><a class="card tilt" href="#guia"><h3>Guía de inversión</h3><p>Qué activos existen, cómo evaluarlos antes de comprar y qué riesgos tiene cada uno.</p></a><a class="card tilt" href="#riesgos"><h3>Riesgos de invertir</h3><p>Riesgos de mercado, inflación, crédito, fraude y más, y cómo reducirlos.</p></a></div></section>
+<section id="busquedas"><h2 data-i="t6"></h2>
+<ul class="chips"><li>Anthropic IPO</li><li>Claude for finance</li><li>Nvidia stock</li><li>gamma exposure</li><li>market crash</li><li>AI hedge fund</li><li>stock market</li><li>Kalshi</li><li>0DTE</li><li>gold price</li></ul>
+<p class="note2">Finzdata, Google Trends, 2026: <a href="https://finzdata.com/research/google-trends-markets-november-2026">finzdata.com</a></p></section>
+
+<section id="glosario"><h2 data-i="tg"></h2>
+<input id="q" type="search" autocomplete="off"><ul id="gl" lang="es"></ul>
+<p id="none" lang="es">Sin resultados. Prueba con otra palabra.</p></section>
+</main></div>
+<main class="doc" id="v-guia" hidden><h1>Guía de inversión: qué activos existen y cómo evaluarlos</h1><p class="aviso"><strong>Importante:</strong> este contenido es educativo. No recomienda comprar ni vender ningún activo en particular, porque lo adecuado depende de tu situación, tus metas y tu tolerancia al riesgo. Para decisiones concretas consulta a un asesor financiero con licencia en tu país. Invertir implica riesgo de perder parte o todo el dinero.</p><h2>Antes de invertir: cuatro preguntas</h2><ul><li>¿Tengo un fondo de emergencia? Muchas guías sugieren reservar varios meses de gastos en algo seguro y fácil de retirar.</li><li>¿Tengo deudas con tasas altas? Pagarlas suele dar un ahorro seguro, mientras que el rendimiento de una inversión es incierto.</li><li>¿Cuándo necesitaré este dinero? Cuanto más corto el plazo, menos conviene exponerlo a activos que suben y bajan.</li><li>¿Cuánta caída podría soportar sin vender por pánico? Tu respuesta define cuánto riesgo es razonable para ti.</li></ul><h2>Los activos principales</h2><h3>Depósitos y cuentas de ahorro</h3><p>Qué es: dinero en un banco o cooperativa que paga un interés. Cómo evaluarlo: compara la tasa con la inflación, la solidez de la entidad, las comisiones y si existe seguro de depósitos en tu país y hasta qué monto. Riesgos: la inflación puede superar el interés y reducir tu poder de compra; si la entidad quiebra y no hay seguro, puedes perder dinero. Suele encajar con: metas de corto plazo y fondo de emergencia.</p><h3>Bonos</h3><p>Qué es: un préstamo a un gobierno o empresa que paga intereses y devuelve el capital al vencimiento. Cómo evaluarlo: emisor y calificación crediticia, plazo, rendimiento, moneda y qué ocurre con su precio si suben las tasas. Riesgos: impago del emisor, caída del precio cuando suben las tasas, inflación y tipo de cambio si está en otra moneda. Suele encajar con: quien busca ingresos más previsibles y acepta inmovilizar dinero por un plazo.</p><h3>Acciones</h3><p>Qué es: una parte de la propiedad de una empresa. Cómo evaluarlo: su negocio, ingresos y utilidades, nivel de deuda, valoración frente a sus ganancias, competidores y dividendos. Riesgos: el precio puede caer con fuerza y tardar años en recuperarse; la empresa puede quebrar; concentrar el dinero en pocas acciones aumenta el riesgo. Suele encajar con: horizontes largos y capacidad de soportar caídas.</p><h3>ETF y fondos indexados</h3><p>Qué es: fondos que replican un índice o una canasta de activos y compran muchos valores a la vez. Cómo evaluarlo: qué índice replican, la comisión anual, el tamaño y la liquidez, qué contienen realmente y cómo tributan. Riesgos: caen junto con el mercado que replican; algunos ETF son complejos o apalancados y pueden perder mucho en poco tiempo; las comisiones reducen el resultado. Suele encajar con: diversificar sin elegir empresas una por una.</p><h3>Divisas</h3><p>Qué es: comprar una moneda esperando que suba frente a otra. Cómo evaluarlo: tasas de interés, inflación, política del banco central, comisiones y diferencial entre compra y venta. Riesgos: movimientos muy difíciles de predecir; el apalancamiento puede multiplicar las pérdidas, y varios reguladores obligan a advertir que una gran parte de los clientes minoristas pierde dinero con estos productos. Suele encajar con: viajes, pagos o necesidades reales de otra moneda; especular es de alto riesgo.</p><h3>Oro y materias primas</h3><p>Qué es: metales y bienes como petróleo o cobre; se accede de forma física, mediante fondos o con futuros. Cómo evaluarlo: la forma de acceso, costos de custodia, comisiones y liquidez. Riesgos: precios volátiles, no pagan intereses ni dividendos y los futuros pueden implicar apalancamiento. Suele encajar con: una porción pequeña dentro de una cartera diversificada.</p><h3>Bienes raíces y fondos inmobiliarios (REIT)</h3><p>Qué es: inmuebles propios o fondos que cotizan en bolsa y reparten rentas. Cómo evaluarlo: ubicación, ocupación, gastos, deuda, costos de compra y venta e impuestos; en un REIT, el tipo de propiedades y su deuda. Riesgos: baja liquidez, concentración, financiamiento más caro con tasas altas y periodos sin inquilinos. Suele encajar con: horizontes largos y capacidad de cubrir gastos imprevistos.</p><h3>Criptoactivos</h3><p>Qué es: activos digitales como bitcoin o ether. Cómo evaluarlo: si la plataforma está regulada y su historial, cómo se custodian tus activos, las comisiones, quién respalda el proyecto y si tiene uso real; desconfía de rendimientos garantizados. Riesgos: volatilidad extrema, estafas, hackeos a plataformas, pérdida de claves, cambios regulatorios y stablecoins que pierden su paridad. Suele encajar con: solo dinero que podrías perder por completo sin afectar tu vida.</p><h3>Derivados (opciones, futuros y CFD)</h3><p>Qué es: contratos cuyo valor depende de otro activo. Cómo evaluarlo: antes de operar hay que entender el contrato, el vencimiento, el margen y los costos. Riesgos: el apalancamiento puede hacerte perder más de lo depositado, los contratos vencen y su complejidad es alta. Suele encajar con: personas con experiencia; no son un punto de partida para principiantes.</p><h2>Errores comunes</h2><ul><li>Invertir dinero que necesitarás pronto.</li><li>Perseguir lo que está de moda o lo que subió mucho.</li><li>Poner todo en un solo activo o una sola empresa.</li><li>Ignorar comisiones e impuestos.</li><li>Comprar o vender por pánico o euforia.</li><li>Confiar en ganancias garantizadas, grupos de mensajería o influencers.</li></ul><h2>Lista para revisar antes de comprar</h2><ul><li>¿Entiendo cómo gana dinero este activo?</li><li>¿Cuánto podría perder en el peor escenario razonable?</li><li>¿Qué comisiones e impuestos pagaré al comprar, mantener y vender?</li><li>¿La plataforma o el intermediario está regulado en mi país?</li><li>¿Puedo vender cuando lo necesite?</li><li>¿Qué parte de mi dinero total representa esta inversión?</li></ul><p>Sigue con la guía de <a href="#riesgos">riesgos de invertir</a>.</p></main>
+<main class="doc" id="v-riesgos" hidden><h1>Riesgos de invertir: lo que debes saber</h1><p class="aviso"><strong>Importante:</strong> este contenido es educativo. No recomienda comprar ni vender ningún activo en particular, porque lo adecuado depende de tu situación, tus metas y tu tolerancia al riesgo. Para decisiones concretas consulta a un asesor financiero con licencia en tu país. Invertir implica riesgo de perder parte o todo el dinero.</p><h2>Los principales riesgos</h2><h3>Riesgo de mercado</h3><p>Los precios suben y bajan por noticias, economía y ánimo de los inversionistas. Afecta a casi todos los activos, aunque con distinta intensidad.</p><h3>Inflación</h3><p>Si los precios suben más que tu rendimiento, tu dinero compra menos aunque el saldo crezca.</p><h3>Tasas de interés</h3><p>Cuando suben, los bonos ya emitidos pierden valor y el crédito se encarece; cuando bajan ocurre lo contrario.</p><h3>Crédito o impago</h3><p>El emisor de un bono o el deudor de un préstamo puede dejar de pagar parte o todo lo prometido.</p><h3>Liquidez</h3><p>Algunos activos son difíciles de vender rápido o sin aceptar un precio mucho menor, como inmuebles o ciertos fondos.</p><h3>Tipo de cambio</h3><p>Si inviertes en otra moneda, una caída de esa moneda puede borrar ganancias aunque el activo suba.</p><h3>Concentración</h3><p>Poner demasiado dinero en un activo, sector o país hace que un solo problema te golpee con fuerza.</p><h3>Apalancamiento</h3><p>Operar con dinero prestado o con margen amplifica ganancias y pérdidas, y puede hacerte perder más de lo invertido.</p><h3>Plataformas y contrapartes</h3><p>Un intermediario puede quebrar, ser hackeado o no ser regulado. Verifica su registro ante la autoridad financiera de tu país.</p><h3>Fraudes y estafas</h3><p>Señales de alerta: rendimientos garantizados, presión para actuar rápido, pedir pagos para poder retirar, ofertas por redes sociales o mensajería y personas que piden tus claves. Nunca compartas contraseñas ni códigos de verificación.</p><h3>Riesgo regulatorio y fiscal</h3><p>Las leyes y los impuestos cambian y varían por país. Pueden afectar lo que ganas o lo que puedes comprar.</p><h3>Riesgo del comportamiento</h3><p>Las emociones llevan a comprar caro por euforia y vender barato por miedo. Es uno de los errores más costosos.</p><h2>Cómo reducir los riesgos</h2><ul><li>Diversifica entre activos, sectores y países.</li><li>Invierte de forma gradual en lugar de todo de una vez.</li><li>Define el plazo y el objetivo antes de comprar.</li><li>Conoce todos los costos y comisiones.</li><li>Verifica que el intermediario esté regulado.</li><li>No pidas prestado para invertir.</li><li>Revisa tu situación de forma periódica.</li></ul><p>Reducir los riesgos no los elimina: ninguna estrategia garantiza ganancias. Vuelve a la <a href="#guia">guía de inversión</a>.</p></main>
+<main class="doc" id="v-acerca" hidden><h1>Acerca de Mundo Finza</h1><p>Mundo Finza es un sitio en español que explica cómo funcionan las bolsas, las divisas, los bancos centrales y los riesgos de invertir, con un lenguaje claro y sin promesas de ganancias.</p><h2>Cómo trabajamos</h2><p>Publicamos contenido educativo. No damos asesoría personalizada ni recomendamos comprar o vender activos concretos. Si en el futuro mostramos publicidad, lo indicaremos con claridad y no influirá en lo que escribimos.</p><h2>Lo que no hacemos</h2><p>No prometemos rentabilidad, no vendemos productos financieros y no pedimos tus claves ni datos bancarios.</p><p>Escríbenos desde la página de <a href="#contacto">contacto</a>.</p></main>
+<main class="doc" id="v-contacto" hidden><h1>Contacto</h1><p>Escríbenos a <a href="mailto:contacto@mundofinza.com">contacto@mundofinza.com</a> para consultas, correcciones o solicitudes sobre tus datos.</p><p>No enviamos mensajes pidiendo claves, códigos ni datos bancarios. Si recibes uno que dice venir de nosotros, ignóralo.</p></main>
+<main class="doc" id="v-privacidad" hidden><h1>Política de privacidad</h1><p>Última actualización: noviembre de 2026.</p><h2>Quiénes somos</h2><p>Mundo Finza es un sitio educativo sobre mercados y finanzas. Puedes escribirnos desde la página de <a href="#contacto">contacto</a>.</p><h2>Qué datos tratamos</h2><p>No pedimos registro ni tenemos formularios. Guardamos tu idioma preferido en el almacenamiento local de tu navegador; esa información no se envía a nuestros servidores.</p><p>El sitio se aloja en Cloudflare, que puede registrar datos técnicos como la dirección IP y el tipo de navegador para operar y proteger el servicio. Las fuentes tipográficas se cargan desde Google Fonts y la biblioteca de gráficos 3D desde cdnjs, por lo que esos servicios también reciben tu dirección IP al cargar la página.</p><h2>Publicidad</h2><p>Si mostramos anuncios de Google AdSense, Google y sus socios pueden usar cookies o identificadores para mostrar anuncios y medir su rendimiento. Puedes gestionar los anuncios personalizados en la configuración de anuncios de Google. Cuando la ley lo exija, como en el Espacio Económico Europeo y el Reino Unido, pediremos tu consentimiento antes.</p><h2>Tus derechos</h2><p>Según la ley de tu país, puedes pedir acceso, corrección o eliminación de tus datos personales. Escríbenos y responderemos.</p><h2>Menores</h2><p>El sitio no está dirigido a menores de 18 años.</p><h2>Cambios</h2><p>Podemos actualizar esta política y publicaremos la fecha de la última revisión.</p></main>
+<main class="doc" id="v-terminos" hidden><h1>Aviso legal y términos de uso</h1><p class="aviso"><strong>Importante:</strong> este contenido es educativo. No recomienda comprar ni vender ningún activo en particular, porque lo adecuado depende de tu situación, tus metas y tu tolerancia al riesgo. Para decisiones concretas consulta a un asesor financiero con licencia en tu país. Invertir implica riesgo de perder parte o todo el dinero.</p><h2>Uso del contenido</h2><p>El contenido de Mundo Finza es informativo y educativo. No constituye asesoría financiera, legal, fiscal ni una oferta o recomendación de comprar o vender instrumentos financieros.</p><h2>Exactitud</h2><p>Hacemos un esfuerzo razonable por ofrecer información correcta, pero no garantizamos que esté completa o actualizada. El sitio no muestra precios en vivo y los horarios de las bolsas son aproximados. Verifica siempre en fuentes oficiales.</p><h2>Responsabilidad</h2><p>No nos hacemos responsables de pérdidas derivadas de decisiones tomadas con base en este sitio. Cada persona es responsable de sus decisiones.</p><h2>Enlaces de terceros</h2><p>Los enlaces a otros sitios se ofrecen como referencia. No controlamos su contenido.</p><h2>Propiedad intelectual</h2><p>Los textos y el diseño del sitio pertenecen a Mundo Finza. No los copies ni los republiques sin permiso.</p><h2>Cambios</h2><p>Podemos modificar estos términos en cualquier momento.</p></main>
+
+<nav class="fl" aria-label="Legal"><a href="#guia">Guía de inversión</a><a href="#riesgos">Riesgos</a><a href="#acerca">Acerca de</a><a href="#contacto">Contacto</a><a href="#privacidad">Privacidad</a><a href="#terminos">Aviso legal</a></nav>
+<footer data-i="ft"></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>var L={
+es:{n1:"Inicio",n2:"Activos",n3:"Bolsas",n4:"Bancos centrales",n5:"Conceptos",n6:"Búsquedas",n7:"Glosario",h1:"{n} de 9 bolsas importantes están abiertas ahora",lead:"Guía para entender bolsas, divisas, bancos centrales y los conceptos que mueven la economía global.",nt:"",op:"Abierta",cl:"Cerrada",lc:"hora local",t2:"Qué se negocia en los mercados",t3:"Principales bolsas e índices",t4:"Bancos centrales",t5:"Conceptos que explican los mercados",t6:"Qué se busca en Google sobre mercados",tg:"Glosario",ph:"Buscar un término…",ft:"Contenido educativo. No es asesoría financiera ni recomendación de compra o venta. Esta página no muestra precios en vivo."},
+en:{n1:"Home",n2:"Assets",n3:"Exchanges",n4:"Central banks",n5:"Concepts",n6:"Searches",n7:"Glossary",h1:"{n} of 9 major exchanges are open right now",lead:"A guide to exchanges, currencies, central banks and the ideas that move the global economy.",nt:"The detailed sections below are in Spanish. Use your browser’s translate feature to read them in your language.",op:"Open",cl:"Closed",lc:"local time",t2:"What is traded in the markets",t3:"Major exchanges and indices",t4:"Central banks",t5:"Concepts that explain markets",t6:"What people search on Google about markets",tg:"Glossary",ph:"Search a term…",ft:"Educational content. Not financial advice or a recommendation to buy or sell. This page does not show live prices."},
+pt:{n1:"Início",n2:"Ativos",n3:"Bolsas",n4:"Bancos centrais",n5:"Conceitos",n6:"Buscas",n7:"Glossário",h1:"{n} de 9 bolsas importantes estão abertas agora",lead:"Guia para entender bolsas, moedas, bancos centrais e os conceitos que movem a economia global.",nt:"As seções detalhadas abaixo estão em espanhol. Use o tradutor do seu navegador para lê-las no seu idioma.",op:"Aberta",cl:"Fechada",lc:"hora local",t2:"O que é negociado nos mercados",t3:"Principais bolsas e índices",t4:"Bancos centrais",t5:"Conceitos que explicam os mercados",t6:"O que se pesquisa no Google sobre mercados",tg:"Glossário",ph:"Buscar um termo…",ft:"Conteúdo educativo. Não é consultoria financeira nem recomendação de compra ou venda. Esta página não mostra preços ao vivo."},
+fr:{n1:"Accueil",n2:"Actifs",n3:"Bourses",n4:"Banques centrales",n5:"Notions",n6:"Recherches",n7:"Glossaire",h1:"{n} bourses majeures sur 9 sont ouvertes en ce moment",lead:"Un guide pour comprendre les bourses, les devises, les banques centrales et les notions qui font bouger l’économie mondiale.",nt:"Les sections détaillées ci-dessous sont en espagnol. Utilisez la traduction de votre navigateur pour les lire dans votre langue.",op:"Ouverte",cl:"Fermée",lc:"heure locale",t2:"Ce qui se négocie sur les marchés",t3:"Principales bourses et indices",t4:"Banques centrales",t5:"Notions pour comprendre les marchés",t6:"Ce que l’on cherche sur Google à propos des marchés",tg:"Glossaire",ph:"Rechercher un terme…",ft:"Contenu éducatif. Ce n’est ni un conseil financier ni une recommandation d’achat ou de vente. Cette page n’affiche pas de cours en direct."},
+de:{n1:"Start",n2:"Anlageklassen",n3:"Börsen",n4:"Zentralbanken",n5:"Konzepte",n6:"Suchtrends",n7:"Glossar",h1:"{n} von 9 großen Börsen sind gerade geöffnet",lead:"Ein Leitfaden zu Börsen, Währungen, Zentralbanken und den Konzepten, die die Weltwirtschaft bewegen.",nt:"Die ausführlichen Abschnitte unten sind auf Spanisch. Nutzen Sie die Übersetzungsfunktion Ihres Browsers, um sie in Ihrer Sprache zu lesen.",op:"Geöffnet",cl:"Geschlossen",lc:"Ortszeit",t2:"Was an den Märkten gehandelt wird",t3:"Wichtige Börsen und Indizes",t4:"Zentralbanken",t5:"Konzepte, die Märkte erklären",t6:"Wonach bei Google zu Märkten gesucht wird",tg:"Glossar",ph:"Begriff suchen…",ft:"Bildungsinhalt. Keine Finanzberatung und keine Kauf- oder Verkaufsempfehlung. Diese Seite zeigt keine Live-Kurse."},
+zh:{n1:"首页",n2:"资产",n3:"交易所",n4:"央行",n5:"概念",n6:"搜索热点",n7:"术语表",h1:"9 家主要交易所中，{n} 家正在开市",lead:"了解交易所、外汇、央行以及推动全球经济的核心概念的指南。",nt:"下方详细内容为西班牙语，请使用浏览器的翻译功能以您的语言阅读。",op:"开市",cl:"休市",lc:"当地时间",t2:"市场中交易的是什么",t3:"主要交易所与指数",t4:"央行",t5:"理解市场的核心概念",t6:"人们在谷歌上搜索的市场话题",tg:"术语表",ph:"搜索术语…",ft:"本页内容仅供教育参考，不构成投资建议，也不是买卖推荐。本页不显示实时价格。"},
+ja:{n1:"ホーム",n2:"資産",n3:"取引所",n4:"中央銀行",n5:"基本概念",n6:"検索トレンド",n7:"用語集",h1:"主要9取引所のうち、{n}か所が現在取引中です",lead:"取引所、為替、中央銀行、そして世界経済を動かす基本概念を解説するガイドです。",nt:"以下の詳細セクションはスペイン語です。ブラウザの翻訳機能でお好みの言語に翻訳してお読みください。",op:"取引中",cl:"終了",lc:"現地時間",t2:"市場で取引されるもの",t3:"主要な取引所と指数",t4:"中央銀行",t5:"市場を理解するための概念",t6:"市場についてGoogleで検索されていること",tg:"用語集",ph:"用語を検索…",ft:"教育目的の情報です。投資助言や売買の推奨ではありません。このページにリアルタイム価格は表示されません。"},
+ar:{n1:"الرئيسية",n2:"الأصول",n3:"البورصات",n4:"البنوك المركزية",n5:"المفاهيم",n6:"عمليات البحث",n7:"المسرد",h1:"{n} من 9 بورصات رئيسية مفتوحة الآن",lead:"دليل لفهم البورصات والعملات والبنوك المركزية والمفاهيم التي تحرّك الاقتصاد العالمي.",nt:"الأقسام التفصيلية أدناه بالإسبانية. استخدم ميزة الترجمة في متصفحك لقراءتها بلغتك.",op:"مفتوحة",cl:"مغلقة",lc:"التوقيت المحلي",t2:"ما الذي يُتداول في الأسواق",t3:"أبرز البورصات والمؤشرات",t4:"البنوك المركزية",t5:"مفاهيم تشرح الأسواق",t6:"ما يبحث عنه الناس في غوغل عن الأسواق",tg:"المسرد",ph:"ابحث عن مصطلح…",ft:"محتوى تعليمي. ليس نصيحة مالية ولا توصية بالشراء أو البيع. لا تعرض هذه الصفحة أسعارًا مباشرة."}
+};
+var EX=[["Tokio","Asia/Tokyo",540,930,35.7,139.7],["Shanghái","Asia/Shanghai",570,900,31.2,121.5],["Hong Kong","Asia/Hong_Kong",570,960,22.3,114.2],["Bombay","Asia/Kolkata",555,930,19.1,72.9],["Fráncfort","Europe/Berlin",540,1050,50.1,8.7],["Londres","Europe/London",480,990,51.5,-0.1],["Nueva York","America/New_York",570,960,40.7,-74],["São Paulo","America/Sao_Paulo",600,1020,-23.5,-46.6],["Sídney","Australia/Sydney",600,960,-33.9,151.2]];
+var OPEN=[],cur="es",$=function(i){return document.getElementById(i)};
+function T(k){return (L[cur]&&L[cur][k])||L.es[k]}
+function info(tz){var p={};new Intl.DateTimeFormat("en-GB",{timeZone:tz,weekday:"short",hour:"2-digit",minute:"2-digit",hour12:false}).formatToParts(new Date()).forEach(function(x){p[x.type]=x.value});var h=parseInt(p.hour,10)%24,m=parseInt(p.minute,10);return{min:h*60+m,wk:p.weekday!=="Sat"&&p.weekday!=="Sun",txt:("0"+h).slice(-2)+":"+("0"+m).slice(-2)}}
+function tick(){var n=0,h="";EX.forEach(function(e,i){var f=info(e[1]),o=f.wk&&f.min>=e[2]&&f.min<e[3];OPEN[i]=o;if(o)n++;h+='<li class="tilt'+(o?" open":"")+'"><b>'+e[0]+'</b><time>'+f.txt+" "+T("lc")+'</time><span class="pill"><i></i>'+T(o?"op":"cl")+"</span></li>"});$("clock").innerHTML=h;$("h1").textContent=T("h1").replace("{n}",n)}
+function setLang(l){cur=L[l]?l:"en";var d=document.documentElement;d.lang=cur;d.dir=cur==="ar"?"rtl":"ltr";document.querySelectorAll("[data-i]").forEach(function(e){e.textContent=T(e.getAttribute("data-i"))});$("nt").hidden=cur==="es";$("q").placeholder=T("ph");$("q").setAttribute("aria-label",T("tg"));$("lang").value=cur;try{localStorage.setItem("mf-lang",cur)}catch(e){}tick()}
+$("lang").addEventListener("change",function(){setLang(this.value)});
+var s0=null;try{s0=localStorage.getItem("mf-lang")}catch(e){}
+setLang(s0||((navigator.language||"en").slice(0,2)));
+setInterval(tick,30000);
+
+var G=[["Acción","Título que representa una parte de una empresa."],["Bono","Préstamo que se negocia en el mercado y paga intereses."],["Dividendo","Parte de las ganancias que una empresa reparte a sus accionistas."],["ETF","Fondo que cotiza en bolsa y replica un índice o una canasta de activos."],["Índice bursátil","Medida que resume el desempeño de un grupo de acciones."],["Capitalización de mercado","Precio de una acción multiplicado por el número de acciones de la empresa."],["Volatilidad","Qué tanto y qué rápido cambia el precio de un activo."],["Liquidez","Facilidad para comprar o vender un activo sin mover su precio."],["Mercado alcista","Periodo de precios en alza sostenida."],["Mercado bajista","Caídas prolongadas, normalmente de 20 % o más desde el máximo."],["Opción","Contrato que da el derecho, no la obligación, de comprar o vender a un precio fijado."],["Stablecoin","Criptoactivo diseñado para mantener un valor estable, como el de un dólar."]];
+function nm(s){return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"")}
+function draw(){var t=nm($("q").value.trim()),h="",c=0;G.forEach(function(g){if(!t||nm(g[0]+" "+g[1]).indexOf(t)>-1){c++;h+="<li><b>"+g[0]+".</b> <span>"+g[1]+"</span></li>"}});$("gl").innerHTML=h;$("none").style.display=c?"none":"block"}
+$("q").addEventListener("input",draw);draw();
+
+var calm=matchMedia("(prefers-reduced-motion:reduce)").matches;
+if(!calm){
+document.addEventListener("pointermove",function(e){var t=e.target.closest&&e.target.closest(".tilt");if(!t)return;var b=t.getBoundingClientRect(),x=(e.clientX-b.left)/b.width-.5,y=(e.clientY-b.top)/b.height-.5;t.style.transform="perspective(800px) rotateY("+x*10+"deg) rotateX("+(-y*10)+"deg) translateZ(6px)"});
+document.addEventListener("pointerout",function(e){var t=e.target.closest&&e.target.closest(".tilt");if(t)t.style.transform=""});
+}
+
+(function(){
+if(typeof THREE==="undefined")return;
+try{
+var box=$("stage"),r=new THREE.WebGLRenderer({antialias:true,alpha:true});
+r.setPixelRatio(Math.min(window.devicePixelRatio||1,2));box.appendChild(r.domElement);
+var s=new THREE.Scene(),c=new THREE.PerspectiveCamera(40,1,.1,50);c.position.z=3.7;
+var g=new THREE.Group();g.rotation.x=.3;g.rotation.y=-.4;s.add(g);
+g.add(new THREE.Mesh(new THREE.SphereGeometry(.98,48,48),new THREE.MeshBasicMaterial({color:0x0b1f3a})));
+g.add(new THREE.Mesh(new THREE.IcosahedronGeometry(1,4),new THREE.MeshBasicMaterial({color:0x3b82c8,wireframe:true,transparent:true,opacity:.32})));
+function ll(a,o,R){var f=(90-a)*Math.PI/180,t=(o+180)*Math.PI/180;return new THREE.Vector3(-R*Math.sin(f)*Math.cos(t),R*Math.cos(f),R*Math.sin(f)*Math.sin(t))}
+var M=EX.map(function(e){var m=new THREE.Mesh(new THREE.SphereGeometry(.035,12,12),new THREE.MeshBasicMaterial({color:0x7f93ab}));m.position.copy(ll(e[4],e[5],1.02));g.add(m);return m});
+var R1=new THREE.Mesh(new THREE.TorusGeometry(1.5,.008,6,160),new THREE.MeshBasicMaterial({color:0xe6b450,transparent:true,opacity:.75}));R1.rotation.x=1.3;s.add(R1);
+var R2=new THREE.Mesh(new THREE.TorusGeometry(1.75,.006,6,160),new THREE.MeshBasicMaterial({color:0x4ea1ff,transparent:true,opacity:.5}));R2.rotation.set(1.8,.5,0);s.add(R2);
+var p=[];for(var i=0;i<300;i++){var v=new THREE.Vector3(Math.random()-.5,Math.random()-.5,Math.random()-.5).normalize().multiplyScalar(3+Math.random()*2);p.push(v.x,v.y,v.z)}
+var gg=new THREE.BufferGeometry();gg.setAttribute("position",new THREE.Float32BufferAttribute(p,3));
+s.add(new THREE.Points(gg,new THREE.PointsMaterial({color:0xffffff,size:.025,transparent:true,opacity:.7})));
+function rs(){var w=box.clientWidth,h=box.clientHeight;if(!w||!h)return;r.setSize(w,h,false);c.aspect=w/h;c.updateProjectionMatrix()}
+rs();window.addEventListener("resize",rs);
+var d=0,px=0;box.addEventListener("pointerdown",function(e){d=1;px=e.clientX});window.addEventListener("pointerup",function(){d=0});
+box.addEventListener("pointermove",function(e){if(d){g.rotation.y+=(e.clientX-px)*.008;px=e.clientX}});
+function go(t){requestAnimationFrame(go);if(!d&&!calm)g.rotation.y+=.0025;if(!calm){R1.rotation.z+=.004;R2.rotation.z-=.003}
+M.forEach(function(m,i){var o=OPEN[i];m.material.color.setHex(o?0x2ee59d:0x7f93ab);m.scale.setScalar(o?1.4+.4*Math.sin(t*.004+i):1)});r.render(s,c)}
+go(0);
+}catch(e){}
+})();
+</script>
+<script>
+function route(){var h=decodeURIComponent(location.hash.slice(1)),v=h&&document.getElementById("v-"+h);
+document.querySelectorAll("main.doc").forEach(function(e){e.hidden=true});
+document.getElementById("home").hidden=!!v;
+if(v){v.hidden=false;window.scrollTo(0,0)}else{var t=h&&document.getElementById(h);if(t)t.scrollIntoView()}}
+window.addEventListener("hashchange",route);route();
+</script>
+</body>
+</html>
